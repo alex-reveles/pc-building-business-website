@@ -4,10 +4,10 @@ import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "AlexBuilds PC | Custom Gaming PCs — Tustin, CA",
+  title: "AlexBuilds PC | Custom Gaming PCs — La Puente, CA",
   description:
     "Hand-built custom gaming and workstation PCs. Expert assembly, tested and ready to ship. Serving Southern California.",
-  keywords: ["custom PC", "gaming PC", "PC builder", "Tustin", "Orange County"],
+  keywords: ["custom PC", "gaming PC", "PC builder", "La Puente", "Los Angeles County", "Orange County"],
   openGraph: {
     title: "AlexBuilds PC | Custom Gaming PCs",
     description: "Hand-built custom PCs — tested, guaranteed, delivered.",

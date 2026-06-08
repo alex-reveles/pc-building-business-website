@@ -12,7 +12,7 @@ export default function Footer() {
               AlexBuilds<span className="text-brand-500">PC</span>
             </Link>
             <p className="text-gray-400 text-sm leading-relaxed">
-              Hand-built custom PCs in Tustin, CA. Quality parts, clean builds,
+              Hand-built custom PCs in La Puente, CA. Quality parts, clean builds,
               personal service.
             </p>
           </div>
