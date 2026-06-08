@@ -8,13 +8,13 @@ export default function AboutPage() {
 
         <div className="prose prose-invert max-w-none space-y-5 text-gray-300 leading-relaxed">
           <p>
-            Hi, I&apos;m Alex — a PC builder based in Tustin, CA. I started
+            Hi, I&apos;m Alex — a PC builder based in La Puente, CA. I started
             building computers because I was tired of paying retail markups for
             pre-builts that were poorly assembled, overheated, and came with no
             real support.
           </p>
           <p>
-            Every PC I build is sourced from Micro Center right here in Tustin
+            Every PC I build is sourced from Micro Center in Tustin
             — fresh inventory, current-gen parts, no old stock. I handle the
             cable management, apply proper thermal paste, run full stability
             tests, and make sure your machine is dialed in before it ever
