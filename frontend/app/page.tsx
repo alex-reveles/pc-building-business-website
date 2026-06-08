@@ -11,7 +11,7 @@ export default function HomePage() {
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-brand-900/30 via-transparent to-transparent" />
         <div className="relative text-center max-w-4xl mx-auto">
           <p className="text-brand-500 font-mono text-sm uppercase tracking-widest mb-4">
-            Custom PC Building — Tustin, CA
+            Custom PC Building — La Puente, CA
           </p>
           <h1 className="text-5xl md:text-7xl font-bold text-white mb-6 leading-tight">
             Your Dream PC,{" "}
