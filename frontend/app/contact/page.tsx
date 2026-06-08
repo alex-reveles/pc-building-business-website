@@ -1,11 +1,15 @@
 "use client";
 
 import { useState } from "react";
-import { Send, CheckCircle } from "lucide-react";
+import { Send, CheckCircle, AlertCircle } from "lucide-react";
+
+const WEBHOOK_URL = process.env.NEXT_PUBLIC_MAKE_WEBHOOK_URL;
+const FALLBACK_EMAIL = "ajrev2022@proton.me";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -16,19 +20,33 @@ export default function ContactPage() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
+    setError(false);
+
+    if (!WEBHOOK_URL) {
+      console.error("NEXT_PUBLIC_MAKE_WEBHOOK_URL is not configured");
+      setError(true);
+      setLoading(false);
+      return;
+    }
+
     try {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_API_URL}/lead`,
-        {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(form),
-        }
-      );
-      if (res.ok) setSubmitted(true);
+      const res = await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...form,
+          source: "website-contact-form",
+          submittedAt: new Date().toISOString(),
+        }),
+      });
+
+      if (res.ok) {
+        setSubmitted(true);
+      } else {
+        setError(true);
+      }
     } catch {
-      // fallback: show success anyway for now
-      setSubmitted(true);
+      setError(true);
     } finally {
       setLoading(false);
     }
@@ -56,6 +74,20 @@ export default function ContactPage() {
           Tell me about your build goals and budget. I&apos;ll put together a
           custom recommendation — no commitment required.
         </p>
+
+        {error && (
+          <div className="flex items-start gap-3 bg-red-500/10 border border-red-500/30 rounded-lg p-4 mb-6">
+            <AlertCircle className="w-5 h-5 text-red-400 shrink-0 mt-0.5" />
+            <p className="text-sm text-red-300">
+              Something went wrong sending your message. Please email me
+              directly at{" "}
+              <a href={`mailto:${FALLBACK_EMAIL}`} className="underline font-medium">
+                {FALLBACK_EMAIL}
+              </a>{" "}
+              and I&apos;ll get right back to you.
+            </p>
+          </div>
+        )}
 
         <form onSubmit={handleSubmit} className="space-y-5">
           <div>
