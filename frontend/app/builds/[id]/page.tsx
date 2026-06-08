@@ -8,6 +8,13 @@ const builds: Record<string, typeof featuredBuild> = {
   featured: featuredBuild,
 };
 
+// Pre-render these routes at build time (required for static export)
+export function generateStaticParams() {
+  return Object.keys(builds).map((id) => ({ id }));
+}
+
+export const dynamicParams = false;
+
 export default async function BuildPage({
   params,
 }: {
